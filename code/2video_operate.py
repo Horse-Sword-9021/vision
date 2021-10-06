@@ -22,4 +22,4 @@ def video_show(v_name):
     key=cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-video_show('1.mp4')
+video_show('imgs/1.mp4')

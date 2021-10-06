@@ -513,8 +513,8 @@ def video(v_name):
 
 
 def test():
-    model_bin = 'opencv_detector_uint8.pb'
-    config_text = 'opencv_detector.pbtxt'
+    model_bin = 'code/opencv_detector_uint8.pb'
+    config_text = 'code/opencv_detector.pbtxt'
 
     def face_detection():
         net = cv2.dnn.readNetFromTensorflow(model=model_bin, config=config_text)

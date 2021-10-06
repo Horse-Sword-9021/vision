@@ -1,13 +1,13 @@
 import cv2 as cv
 
-model_bin = "opencv_detector_uint8.pb"
-config_text = "opencv_detector.pbtxt"
+model_bin = 'code/opencv_detector_uint8.pb'
+config_text = 'code/opencv_detector.pbtxt'
 
 
 def video_detection():
     # load tensorflow model
     net = cv.dnn.readNetFromTensorflow(model_bin, config=config_text)
-    capture = cv.VideoCapture("imgs/face.mp4")
+    capture = cv.VideoCapture("imgs/cjg.mp4")
 
     # 目标检测
     while True:

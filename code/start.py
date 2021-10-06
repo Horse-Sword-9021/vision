@@ -15,6 +15,7 @@ import all
 
 
 def main():
+
     engine_img = []
     plt_engine_img = []
     gray_engine_img = []
@@ -23,7 +24,18 @@ def main():
     threshold_engine_img=[]
     erosion_img=[]
     close_img=[]
+    scale=65
+    
+    print('start'.center(scale,'-'))
+    start=time.perf_counter()
+
     for i in range(1, 66):
+        
+        a='*'*i
+        b='.'*(scale-i)
+        c=(i/scale)*100
+
+
         engine_img.append(cv2.imread(f'imgs/imgs/{i}.png'))
         plt_engine_img.append(cv2.imread(f'imgs/imgs/{i}.png'))
         gray_engine_img.append(cv2.imread(f'.imgs/imgs/{i}.png', cv2.IMREAD_GRAYSCALE))
@@ -43,7 +55,7 @@ def main():
 
         threshold_engine_img.append(cv2.imread(f'imgs/operate_imgs/2thresh_adapt/{i}_adapt.png'))
         try:
-            all.morphology(smooth_engine_img[i-1],i-1)
+            all.morphology(smooth_engine_img[i-1],i)
         except Exception as e:
             print('Check your code:morphology()', e.__class__.__name__, e)  # continue #jia
 
@@ -66,23 +78,27 @@ def main():
             all.outline(close_img[i-1],i)
         except Exception as e:
             print('Check your code:outline()', e.__class__.__name__, e)  # continue #jia
+        dur=time.perf_counter()-start
+        print('\r{:^3.0f}%[{}->{}]{:.2f}s'.format(c,a,b,dur),end='')
+        #time.sleep(0.1)
+    print()
+    print('end'.center(scale,'-'))
+    print('耗时{:.2f}秒'.format(time.perf_counter()-start))
 
-        '''
-            all.boundary_fill(plt_engine_img[i]),plt.savefig(f'imgs/imgs/{i}.png')'''
+    '''
+        all.boundary_fill(plt_engine_img[i]),plt.savefig(f'imgs/imgs/{i}.png')'''
 
 
 
 
 if __name__ == '__main__':
     try:
-        start=time.time()
         main()
-        print(f'耗时{time.time()-start}秒')
+        
     except Exception as e:
         print('Check your code:main()', e.__class__.__name__, e)  # continue#jia    
 
     '''
-
     while 1:
         main()
         time.sleep(2)
